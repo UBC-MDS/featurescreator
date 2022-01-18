@@ -1,10 +1,10 @@
 Package: featurescreator
 Version: 0.0.0.9000
 Authors@R: 
-    person("Rakesh", "Pandey", , "rakeshpandey@karunya.edu.in", role = c("aut", "cre")),
+    c(person("Rakesh", "Pandey", , "rakeshpandey@karunya.edu.in", role = c("aut", "cre")),
     person("Nikita", "Shymberg"),
     person("Son", "Chau"),
-    person("Wenjia","Zhu")
+    person("Wenjia","Zhu"))
 Description: Helper functions to create new features for temporal data..
 License: MIT + file LICENSE
 Encoding: UTF-8
