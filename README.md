@@ -49,10 +49,6 @@ engineering features.
 
 ## Installation
 
-<https://cran.r-project.org/web/packages/FeatureTerminatoR/index.html>
-
-<https://github.com/FrancisArgnR/R-FeatureSelection-Packages>
-
 You can install the development version of regexcite from
 [GitHub](https://github.com/) with:
 

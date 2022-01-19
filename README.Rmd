@@ -43,9 +43,6 @@ There are several existing packages that work with time series data. For example
 For datasets that have columns that follow the pattern `quantity_1`, `quantity_2`, ... `featurescreator` is the simplest package for engineering features.
 
 ## Installation
-https://cran.r-project.org/web/packages/FeatureTerminatoR/index.html
-
-https://github.com/FrancisArgnR/R-FeatureSelection-Packages
 
 You can install the development version of regexcite from [GitHub](https://github.com/) with:
       
