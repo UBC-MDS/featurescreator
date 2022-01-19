@@ -2,9 +2,7 @@
 % Please edit documentation in R/features_creator.R
 \name{calculate_percentage_change}
 \alias{calculate_percentage_change}
-\title{Calculate percentage change over a time period
-(months over months or weeks over weeks)
-for the given column pattern.}
+\title{Calculate percentage change over a time period for the given column pattern.}
 \usage{
 calculate_percentage_change(
   df,
@@ -26,9 +24,10 @@ calculate_percentage_change(
 A vector with calculated percentage change
 }
 \description{
-Use case:
-This function aims to generate features to capture trend
-in data for a given comparison period. Example:
-Telecommunication - Predict customers who are more likely to decline their revenue next month/week.
-Finance - Predict customers who are going to default next month/week.
+This function aims to generate features such as percentage change in last month versus
+last to last month to capture trend in data for a given comparison period.
+For example, In Telecommunication it can be used to generate features useful for
+predicting subscribers who are more likely to decline their revenue next month/week.
+In Finance it can be used to generate features useful for predicting
+customers who are going to default next month/week.
 }
