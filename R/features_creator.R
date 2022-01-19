@@ -8,8 +8,6 @@
 #' In Finance it can be used to generate features useful for predicting
 #' customers who are going to default next month/week.
 #'
-#'
-
 #' @param df A tibble or Data frame
 #' @param pattern A string representing column pattern
 #' @param compare_period A numeric vector of comparison period
@@ -19,6 +17,8 @@
 #' @export
 #'
 #' @examples
+#' calculate_percentage_change(df, "week_payment", compare_period=(1, 1))
+#' c(-80, -75, 300)
 calculate_percentage_change <- function(df,
                                         pattern,
                                         compare_period = c(2, 2),

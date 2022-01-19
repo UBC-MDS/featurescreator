@@ -31,3 +31,7 @@ predicting subscribers who are more likely to decline their revenue next month/w
 In Finance it can be used to generate features useful for predicting
 customers who are going to default next month/week.
 }
+\examples{
+calculate_percentage_change(df, "week_payment", compare_period=(1, 1))
+c(-80, -75, 300)
+}
