@@ -38,12 +38,14 @@ This package defines the following four functions:
 - `calculate_percentage_change`: Returns the percent change across consecutive time periods for each row.
 
 ### How does this package fit into the existing ecosystem?
-
-
+There are several existing packages that work with time series data. For example, the [tsfeatures](https://cran.r-project.org/web/packages/tsfeatures/vignettes/tsfeatures.html) package use functions to extract features from time series data. Other package such as [tscompdata](https://github.com/robjhyndman/tscompdata) is useful for comparing time series data.
 
 For datasets that have columns that follow the pattern `quantity_1`, `quantity_2`, ... `featurescreator` is the simplest package for engineering features.
 
 ## Installation
+https://cran.r-project.org/web/packages/FeatureTerminatoR/index.html
+
+https://github.com/FrancisArgnR/R-FeatureSelection-Packages
 
 You can install the development version of regexcite from [GitHub](https://github.com/) with:
       
