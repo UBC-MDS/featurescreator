@@ -69,4 +69,4 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## Credits
 
-`featurescreator` was based on [`The whole game`](https://r-pkgs.org/whole-game.html) by [Hadley Wickham and Jenny Bryan](https://r-pkgs.org/index.html).
+`featurescreator` was based on tutorial [`The whole game`](https://r-pkgs.org/whole-game.html) by [Hadley Wickham and Jenny Bryan](https://r-pkgs.org/index.html).
