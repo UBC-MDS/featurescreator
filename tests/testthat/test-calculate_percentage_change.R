@@ -1,3 +1,14 @@
+# Test for function calculate_percentage_change
+
+# Create test dataframe
+test_df <- tibble::tibble(
+  subscriber_id = c(1, 2, 3),
+  data_usage1 = c(5, 10, 15),
+  data_usage2 = c(20, 10, 10),
+  data_usage3 = c(25, 10, 5),
+  data_usage4 = c(15, 20, 25)
+)
+
 # Type check
 
 # check df
