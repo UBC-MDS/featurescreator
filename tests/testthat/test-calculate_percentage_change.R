@@ -23,8 +23,8 @@ test_that("Check pattern", {
 
 # Check compare period
 test_that("Check compare_period", {
-  expect_error(calculate_percentage_change(test_df, "data_usage", compare_period =
-                                             "1, 1"))
+  expect_error(calculate_percentage_change(test_df, "data_usage",
+                                           compare_period = "1, 1"))
 })
 
 # Check time_filter
@@ -41,8 +41,8 @@ test_that("Check test_filter", {
 
 # Check value error
 test_that("Check value error", {
-  expect_error(calculate_percentage_change(test_df, "data_usage", compare_period =
-                                             c(1, 4)))
+  expect_error(calculate_percentage_change(test_df, "data_usage",
+                                           compare_period = c(1, 4)))
 })
 
 test_that("Check value error", {
