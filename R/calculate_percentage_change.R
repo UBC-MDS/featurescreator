@@ -16,9 +16,6 @@
 #' @return A vector with calculated percentage change
 #' @export
 #'
-#' @examples
-#' calculate_percentage_change(df, "week_payment", compare_period=(1, 1))
-#' c(-80, -75, 300)
 calculate_percentage_change <- function(df,
                                         pattern,
                                         compare_period = c(2, 2),
@@ -70,20 +67,21 @@ calculate_percentage_change <- function(df,
   # fill na to zero
 
   df <- df |>
-    rowwise() |>
-    mutate(p1 = replace_na(sum(c_across(colnames(
+    dplyr::rowwise() |>
+    dplyr::mutate(p1 = tidyr::replace_na(sum(dplyr::c_across(colnames(
       df
     )[colnames(df) %in% columns[1:start]]),
     na.rm = T), 0),
-    p2 = replace_na(sum(c_across(colnames(
+    p2 = tidyr::replace_na(sum(dplyr::c_across(colnames(
       df
     )[colnames(df) %in% columns[(start + 1):(start + end)]]),
     na.rm = T) / (end / start), 0))
 
   # Calculate percentage change
   df <- df |>
-    mutate(percent_change = case_when((p1 == 0 & p2 == 0) ~ 0,
-                                      p2 == 0 ~ ((p1 - p2) * 100 / 0.01),
-                                      TRUE ~ ((p1 - p2) * 100 / p2)))
+    dplyr::mutate(percent_change = dplyr::case_when((p1 == 0 &
+                                                       p2 == 0) ~ 0,
+                                                    p2 == 0 ~ ((p1 - p2) * 100 / 0.01),
+                                                    TRUE ~ ((p1 - p2) * 100 / p2)))
   df$percent_change
 }
