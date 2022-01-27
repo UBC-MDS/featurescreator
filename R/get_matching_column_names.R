@@ -24,16 +24,14 @@ get_matching_column_names <- function(df, pattern) {
     }
     
     pattern <- paste0(pattern, "[0-9]+")
-    matches <- colnames(df) |>
+    # TRUE at index i means col at index i did NOT match
+    non_matches <- colnames(df) |>
         str_match(pattern) |>
-        is.na() |>
-        isFALSE()  # TODO: I think this is wrong fix me next time
+        is.na()
     
-    matches
-    
-    # if(!any(matches)){
-    #     stop("No columns matched the given pattern")
-    # }
-    # 
-    # colnames(df)[matches]
+    if(all(non_matches)){
+        stop("No columns matched the given pattern")
+    }
+
+    colnames(df)[!non_matches]
 }
