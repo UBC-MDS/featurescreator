@@ -34,7 +34,7 @@ test_that("calculate_standard_deviation() returns correct value", {
     week_payment1 = c(1, 2, 3)
   )
   result <- calculate_standard_deviation(df, "week_payment")
-  expect_equal(result, as.double(c(NA, NA, NA)))
+  expect_equal(result, c(0, 0, 0))
 })
 
 # test for data frame with only 1 row
@@ -43,11 +43,11 @@ test_that("calculate_standard_deviation() returns correct value", {
     week_payment1 = c(1)
   )
   result <- calculate_standard_deviation(df, "week_payment")
-  expect_equal(result, as.double(c(NA)))
+  expect_equal(result, c(0))
 })
 
 # test for return correct value
 test_that("calculate_standard_deviation() returns correct average", {
   result <- calculate_standard_deviation(df, "week_payment")
-  expect_equal(result, c(3, 3, 3))
+  expect_equal(result, c(6**0.5, 6**0.5, 6**0.5))
 })
