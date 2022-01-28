@@ -14,9 +14,23 @@
 #' other_column = c(10, 11, 12)
 #' )
 #' calculate_average(df, "week_payment")
-
+#' c(4, 5, 6)
 calculate_average <- function(df, pattern) {
+    # check df types
+    if(!is.data.frame(df)){
+        stop("The df variable needs to be a dataframe")
+    }
 
+    # check pattern type
+    if(!is.character(pattern)){
+        stop("The pattern variable needs to be a character type")
+    }
+
+    # get matching column names
+    colnames <- get_matching_column_names(df, pattern)
+
+    # calculate average
+    mean(df[colnames,])
 }
 
 #' Calculate percentage change over a time period for the given column pattern.
