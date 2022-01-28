@@ -2,7 +2,7 @@
 % Please edit documentation in R/calculate_percentage_change.R
 \name{calculate_percentage_change}
 \alias{calculate_percentage_change}
-\title{Calculate percentage change over a time period for the given column pattern.}
+\title{Calculate percentage change.}
 \usage{
 calculate_percentage_change(
   df,
@@ -24,6 +24,9 @@ calculate_percentage_change(
 A vector with calculated percentage change
 }
 \description{
+Calculate percentage change over a time period for the given column pattern.
+}
+\details{
 This function aims to generate features such as percentage change in last month versus
 last to last month to capture trend in data for a given comparison period.
 For example, In Telecommunication it can be used to generate features useful for

@@ -1,6 +1,9 @@
+#' Calculate percentage change.
+#'
+#' @description
 #' Calculate percentage change over a time period for the given column pattern.
 #'
-#'
+#' @details
 #' This function aims to generate features such as percentage change in last month versus
 #' last to last month to capture trend in data for a given comparison period.
 #' For example, In Telecommunication it can be used to generate features useful for
@@ -16,6 +19,10 @@
 #' @return A vector with calculated percentage change
 #' @export
 #'
+#'#' @examples
+#' data <- data.frame(week_payment1 = c(1, 2, 3), week_payment2 = c(1, 2, 3),
+#'                    week_payment3 = c(1, 2, 3), othercolumn = c(5, 6, 7))
+#' calculate_percentage_change(data, "week_payment", c(1, 1))
 calculate_percentage_change <- function(df,
                                         pattern,
                                         compare_period = c(2, 2),
@@ -39,14 +46,17 @@ calculate_percentage_change <- function(df,
 
   # Get matching columns
   columns <- sort(get_matching_column_names(df, pattern),
-                  decreasing = FALSE)
+    decreasing = FALSE
+  )
 
   # Time filter
   if (!is.null(time_filter)) {
-    columns <- columns[sort(intersect(time_filter,
-                                      as.numeric(sub(
-                                        '.*(\\d{1}).*', '\\1', columns
-                                      ))))]
+    columns <- columns[sort(intersect(
+      time_filter,
+      as.numeric(sub(
+        ".*(\\d{1}).*", "\\1", columns
+      ))
+    ))]
     if (length(columns) != length(time_filter)) {
       stop("Column pattern from time_filter is not present in all columns")
     }
@@ -68,20 +78,26 @@ calculate_percentage_change <- function(df,
 
   df <- df |>
     dplyr::rowwise() |>
-    dplyr::mutate(p1 = tidyr::replace_na(sum(dplyr::c_across(colnames(
-      df
-    )[colnames(df) %in% columns[1:start]]),
-    na.rm = T), 0),
-    p2 = tidyr::replace_na(sum(dplyr::c_across(colnames(
-      df
-    )[colnames(df) %in% columns[(start + 1):(start + end)]]),
-    na.rm = T) / (end / start), 0))
+    dplyr::mutate(
+      p1 = tidyr::replace_na(sum(dplyr::c_across(colnames(
+        df
+      )[colnames(df) %in% columns[1:start]]),
+      na.rm = T
+      ), 0),
+      p2 = tidyr::replace_na(sum(dplyr::c_across(colnames(
+        df
+      )[colnames(df) %in% columns[(start + 1):(start + end)]]),
+      na.rm = T
+      ) / (end / start), 0)
+    )
 
   # Calculate percentage change
   df <- df |>
-    dplyr::mutate(percent_change = dplyr::case_when((p1 == 0 &
-                                                       p2 == 0) ~ 0,
-                                                    p2 == 0 ~ ((p1 - p2) * 100 / 0.01),
-                                                    TRUE ~ ((p1 - p2) * 100 / p2)))
+    dplyr::mutate(percent_change = dplyr::case_when(
+      (p1 == 0 &
+        p2 == 0) ~ 0,
+      p2 == 0 ~ ((p1 - p2) * 100 / 0.01),
+      TRUE ~ ((p1 - p2) * 100 / p2)
+    ))
   df$percent_change
 }

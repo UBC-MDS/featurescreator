@@ -24,7 +24,8 @@ test_that("Check pattern", {
 # Check compare period
 test_that("Check compare_period", {
   expect_error(calculate_percentage_change(test_df, "data_usage",
-                                           compare_period = "1, 1"))
+    compare_period = "1, 1"
+  ))
 })
 
 # Check time_filter
@@ -42,7 +43,8 @@ test_that("Check test_filter", {
 # Check value error
 test_that("Check value error", {
   expect_error(calculate_percentage_change(test_df, "data_usage",
-                                           compare_period = c(1, 4)))
+    compare_period = c(1, 4)
+  ))
 })
 
 test_that("Check value error", {
@@ -58,8 +60,10 @@ test_that("Check value error", {
 
 # return type check
 test_that("Check retrurn type", {
-  expect_type(calculate_percentage_change(test_df, "data_usage"),
-              "double")
+  expect_type(
+    calculate_percentage_change(test_df, "data_usage"),
+    "double"
+  )
 })
 
 test_that("Check return type", {
@@ -76,25 +80,23 @@ test_that("Check return type", {
 
 # Check percentage_change return values
 # Value for comparison are calculated manually using a online calculator
-test_that("Percentage change with default parameters",
-          {
-            expect_equal(
-              calculate_percentage_change(test_df, "data_usage"),
-              c(-37.5,-33.33333333,-16.66666667)
-            )
-          })
+test_that("Percentage change with default parameters", {
+  expect_equal(
+    calculate_percentage_change(test_df, "data_usage"),
+    c(-37.5, -33.33333333, -16.66666667)
+  )
+})
 
-test_that("Percentage change with compare periods",
-          {
-            expect_equal(
-              calculate_percentage_change(test_df, "data_usage", compare_period = c(1, 2)),
-              c(-77.77777778, 0.0, 100.0)
-            )
-            expect_equal(
-              calculate_percentage_change(test_df, "data_usage", compare_period = c(3, 1)),
-              c(11.11111111,-50.0,-60.0)
-            )
-          })
+test_that("Percentage change with compare periods", {
+  expect_equal(
+    calculate_percentage_change(test_df, "data_usage", compare_period = c(1, 2)),
+    c(-77.77777778, 0.0, 100.0)
+  )
+  expect_equal(
+    calculate_percentage_change(test_df, "data_usage", compare_period = c(3, 1)),
+    c(11.11111111, -50.0, -60.0)
+  )
+})
 
 test_that("Percentage change with time filter", {
   expect_equal(
@@ -104,7 +106,7 @@ test_that("Percentage change with time filter", {
       compare_period = c(1, 2),
       time_filter = c(1, 3, 4)
     ),
-    c(-75.0,-33.33333333, 0.0)
+    c(-75.0, -33.33333333, 0.0)
   )
   expect_equal(
     calculate_percentage_change(
@@ -113,6 +115,6 @@ test_that("Percentage change with time filter", {
       compare_period = c(1, 2),
       time_filter = c(4, 2, 1)
     ),
-    c(-71.42857143,-33.33333333,-14.28571429)
+    c(-71.42857143, -33.33333333, -14.28571429)
   )
 })
