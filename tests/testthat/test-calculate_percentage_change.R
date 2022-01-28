@@ -12,24 +12,24 @@ test_df <- tibble::tibble(
 # Type check
 
 # check df
-test_that("Input df check", {
+test_that("Type of df must be dataframe or tibble", {
   expect_error(calculate_percentage_change(c(1, 2, 3, 4), "data_usage"))
 })
 
 # Check pattern
-test_that("Check pattern", {
+test_that("pattern must be a string", {
   expect_error(calculate_percentage_change(test_df, c("data_usage", "data_usage")))
 })
 
 # Check compare period
-test_that("Check compare_period", {
+test_that("compare_period must be a numeric vector of length 2", {
   expect_error(calculate_percentage_change(test_df, "data_usage",
     compare_period = "1, 1"
   ))
 })
 
 # Check time_filter
-test_that("Check test_filter", {
+test_that("time_filter must be a numeric vector of length 2", {
   expect_error(
     calculate_percentage_change(
       test_df,
@@ -41,13 +41,13 @@ test_that("Check test_filter", {
 })
 
 # Check value error
-test_that("Check value error", {
+test_that("Sum of start period and end period must not exceed total number of columns", {
   expect_error(calculate_percentage_change(test_df, "data_usage",
     compare_period = c(1, 4)
   ))
 })
 
-test_that("Check value error", {
+test_that("Column pattern from time_filter is not present in all columns", {
   expect_error(
     calculate_percentage_change(
       test_df,
@@ -59,14 +59,14 @@ test_that("Check value error", {
 })
 
 # return type check
-test_that("Check retrurn type", {
+test_that("Return type of calculate_percentage_change must be double", {
   expect_type(
     calculate_percentage_change(test_df, "data_usage"),
     "double"
   )
 })
 
-test_that("Check return type", {
+test_that("Return type of calculate_percentage_change must be double", {
   expect_type(
     calculate_percentage_change(
       test_df,
