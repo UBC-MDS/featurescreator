@@ -29,8 +29,14 @@ calculate_average <- function(df, pattern) {
     # get matching column names
     colnames <- get_matching_column_names(df, pattern)
 
-    # calculate average
-    mean(df[colnames,])
+
+    # check if there are matching column names
+    if(length(colnames) == 0){
+        stop("No column names found matching pattern")
+    }
+
+    # calculate average of colnames
+    apply(df[, colnames, drop = F], 1, mean)
 }
 
 #' Calculate percentage change over a time period for the given column pattern.
