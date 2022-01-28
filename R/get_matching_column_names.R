@@ -26,7 +26,8 @@ get_matching_column_names <- function(df, pattern) {
     pattern <- paste0(pattern, "[0-9]+")
     # TRUE at index i means col at index i did NOT match
     non_matches <- colnames(df) |>
-        str_match(pattern) |>
+
+    stringr::str_match(pattern) |>
         is.na()
     
     if(all(non_matches)){
