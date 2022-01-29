@@ -17,12 +17,12 @@
 #' @export
 #'
 #' @examples
-#' calculate_percentage_change(df, "week_payment", compare_period=(1, 1))
+#' calculate_percentage_change(df, "week_payment", compare_period=c(1, 1))
 #' c(-80, -75, 300)
 calculate_percentage_change <- function(df,
                                         pattern,
                                         compare_period = c(2, 2),
-                                        time_filter = None) {
+                                        time_filter = NULL) {
 
 }
 

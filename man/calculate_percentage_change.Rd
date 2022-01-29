@@ -8,7 +8,7 @@ calculate_percentage_change(
   df,
   pattern,
   compare_period = c(2, 2),
-  time_filter = None
+  time_filter = NULL
 )
 }
 \arguments{
@@ -32,6 +32,6 @@ In Finance it can be used to generate features useful for predicting
 customers who are going to default next month/week.
 }
 \examples{
-calculate_percentage_change(df, "week_payment", compare_period=(1, 1))
+calculate_percentage_change(df, "week_payment", compare_period=c(1, 1))
 c(-80, -75, 300)
 }
