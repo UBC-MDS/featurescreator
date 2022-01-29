@@ -13,7 +13,6 @@
 #' data <- data.frame(week_payment1 = c(1, 2, 3), week_payment2 = c(1, 2, 3),
 #'                    week_payment3 = c(1, 2, 3), othercolumn = c(5, 6, 7))
 #' get_matching_column_names(data, "week_payment")
-library(stringr)
 
 get_matching_column_names <- function(df, pattern) {
     if(!is.data.frame(df)){
