@@ -34,3 +34,12 @@ predicting subscribers who are more likely to decline their revenue next month/w
 In Finance it can be used to generate features useful for predicting
 customers who are going to default next month/week.
 }
+\examples{
+df <- data.frame(
+    week_payment1 = c(1, 2, 3),
+    week_payment2 = c(4, 5, 6),
+    week_payment3 = c(7, 8, 9),
+    week_payment4 = c(10, 11, 12)
+)
+calculate_percentage_change(df, "week_payment")
+}

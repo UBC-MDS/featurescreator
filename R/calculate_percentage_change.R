@@ -19,10 +19,14 @@
 #' @return A vector with calculated percentage change
 #' @export
 #'
-#'#' @examples
-#' data <- data.frame(week_payment1 = c(1, 2, 3), week_payment2 = c(1, 2, 3),
-#'                    week_payment3 = c(1, 2, 3), othercolumn = c(5, 6, 7))
-#' calculate_percentage_change(data, "week_payment", c(1, 1))
+#' @examples
+#' df <- data.frame(
+#'     week_payment1 = c(1, 2, 3),
+#'     week_payment2 = c(4, 5, 6),
+#'     week_payment3 = c(7, 8, 9),
+#'     week_payment4 = c(10, 11, 12)
+#' )
+#' calculate_percentage_change(df, "week_payment")
 calculate_percentage_change <- function(df,
                                         pattern,
                                         compare_period = c(2, 2),

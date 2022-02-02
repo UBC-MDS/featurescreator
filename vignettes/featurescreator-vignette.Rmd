@@ -2,8 +2,8 @@
 title: "Introduction to featurescreator"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{featurescreator-vignette}
-  %%\VignetteEngine{rmarkdown::render}
+  %\VignetteIndexEntry{Introduction to featurescreator}
+  %%\VignetteEngine{kinitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
