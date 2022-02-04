@@ -1,0 +1,105 @@
+---
+title: "Introduction to featurescreator"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to featurescreator}
+  %%\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`featurescreator` is a package for creating features that capture important trends in data. It can be used in telecommunications, finance, or any other domain where time-based patterns in data are required.
+
+For example, a telecommunications operator, wants to prevent churn by predicting which subscribers' revenue will decline next month so that it can devise strategies to retain those customers. This type of prediction task necessitates the creation of a large number of features that capture trends in data over a period of several months for various dimensions such as recharge, revenue, number of complaints, network usage, number of active days, and so on. This package will assist them in developing features such as standard deviation for the previous n months, average for the previous n months, percentage change from m - 2 to m-1, and so on.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Import library
+
+```{r setup}
+library(featurescreator)
+```
+
+## Example data
+
+```{r}
+example_data = tibble::tibble(
+        subscriber_id = c(1, 2, 3),
+        data_usage1 = c(10, 5, 3),  # 1 represent data usage in prediction month (m) - 1
+        data_usage2 = c(4, 5, 6),  # m - 2
+        data_usage3 = c(7, 8, 9),  # m - 3
+        data_usage4 = c(10, 11, 12), # m - 4
+        data_usage5 = c(13, 14, 15),  # m - 5
+        othercolumn = c(5, 6, 7),  # Other example column
+        data_usage_string6 = c(5, 6, 7)  # Other example column with an integer
+    )
+
+example_data
+```
+
+## get_matching_column_names
+
+This function returns a list of matching columns given a column pattern.
+
+```{r}
+
+featurescreator::get_matching_column_names(example_data, "data_usage")
+```
+
+## calculate_standard_deviation
+
+This function computes the standard deviation of each subscriber's data usage over all recorded months (rowwise). It takes two arguments: the dataframe to use and the pattern to match. The pattern to match is the prefix of the column name of interest not including the incrementing integer at the end.
+
+```{r}
+featurescreator::calculate_standard_deviation(example_data, "data_usage")
+```
+
+## calculate_average
+
+This function computes the average of each subscriber's data usage over all recorded months (rowwise). It takes two arguments: the dataframe to use and the pattern to match. The pattern to match is the prefix of the column name of interest not including the incrementing integer at the end.
+
+```{r}
+featurescreator::calculate_average(
+  example_data,
+  "data_usage"
+)
+```
+
+## calculate_percentage_change
+
+The `calculate_percentage_change` function aims to generate new features to capture trends over time for a given comparison period. The `compare_period` argument is used to indicate which time periods to compare. For example, if we set it to `(1, 1)`, the function calculates the percent change from the last month data usage (data_usage1), to the month before that (data_usage2).
+
+```{r}
+featurescreator::calculate_percentage_change(example_data, "data_usage",
+  compare_period = c(1, 1)
+)
+```
+
+Create percentage change of data usage in last 2 months (`data_usage1`, `data_usage2`) versus previous 2 months (`data_usage3`, `data_usage4`) by setting `compare_period=(2, 2)`.
+
+```{r}
+featurescreator::calculate_percentage_change(example_data, "data_usage",
+  compare_period = c(2, 2)
+)
+```
+
+Create percentage change of data usage in last 2 months (`data_usage1`, `data_usage2`) versus previous 3 months (`data_usage3`, `data_usage4`, `data_usage5`) by setting `compare_period=(2, 3)`. Comparison periods are brought to the same scales for a fare comparison.
+
+```{r}
+featurescreator::calculate_percentage_change(example_data, "data_usage",
+  compare_period = c(2, 3)
+)
+```
+
+To capture percentage changes for few particular months, a `time_filter` can be specified. Create percentage change of data usage in `m - 2` and `m - 3` (that is `data_usage2` and `data_usage3`) versus `m - 4` and `m - 5` (that is `data_usage4` and `data_usage5`) where m is the prediction month.
+
+```{r}
+featurescreator::calculate_percentage_change(example_data, "data_usage",
+  compare_period = c(2, 2),
+  time_filter = c(2, 3, 4, 5)
+)
+```

@@ -1,4 +1,10 @@
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/UBC-MDS/featurescreator/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/featurescreator/actions)
+[![codecov](https://codecov.io/gh/UBC-MDS/featurescreator/branch/master/graph/badge.svg?token=v7A71oQgUx)](https://codecov.io/gh/UBC-MDS/featurescreator)
+<!-- badges: end -->
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # features_creator
@@ -59,7 +65,51 @@ devtools::install_github("UBC-MDS/featurescreator")
 
 ## Usage
 
--   TODO
+``` r
+library(featurescreator)
+library(dplyr)
+
+# Example data
+df <- data.frame(
+  subscriber_id = c(1, 2, 3),
+  data_usage1 = c(10, 5, 3), # 1 represent data usage in prediction month (m) - 1
+  data_usage2 = c(4, 5, 6), # m - 2
+  data_usage3 = c(7, 8, 9), # m - 3
+  data_usage4 = c(10, 11, 12), # m - 4
+  data_usage5 = c(13, 14, 15), # m - 5
+  othercolumn = c(5, 6, 7), # Other example column
+  data_usage_string6 = c(5, 6, 7) # Other example column with an integer
+)
+
+# Get matching column names
+columns <- get_matching_column_names(df, "data_usage")
+
+# Calculate standard deviation across time periods
+df$std_monthly_data_usage <- calculate_standard_deviation(df, "data_usage")
+
+# Calculate average across time periods
+df$avg_monthly_data_usage <- calculate_average(df, "data_usage")
+
+# Calculate percentage change 2 months over 2 months
+df$percent_change_data_usage <- calculate_percentage_change(
+  df, "data_usage",
+  compare_period = c(2, 2)
+)
+
+# Display data
+
+df |> select(
+  subscriber_id,
+  std_monthly_data_usage,
+  avg_monthly_data_usage,
+  percent_change_data_usage
+)
+
+# subscriber_id std_monthly_data_usage  avg_monthly_data_usage  percent_change_data_usage
+# 1 2.792848    8.8 -17.64706
+# 2 3.193744    8.6 -47.36842
+# 3 3.872983    9.0 -57.14286
+```
 
 ## Contributing
 
