@@ -2,7 +2,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/UBC-MDS/featurescreator/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/featurescreator/actions)
-[![codecov](https://codecov.io/gh/UBC-MDS/featurescreator/branch/master/graph/badge.svg?token=v7A71oQgUx)](https://codecov.io/gh/UBC-MDS/featurescreator)
+[![codecov](https://codecov.io/gh/UBC-MDS/featurescreator/branch/main/graph/badge.svg?token=v7A71oQgUx)](https://codecov.io/gh/UBC-MDS/featurescreator)
 <!-- badges: end -->
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
